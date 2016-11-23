@@ -1,0 +1,974 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="ExportPowerPoint">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ppt" type="tns:PowerPoint" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PowerPoint">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Author" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Time" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Department" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Template" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TreeNode" type="tns:ArrayOfTreeNode" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTreeNode">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TreeNode" nillable="true" type="tns:TreeNode" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TreeNode">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parent" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Images" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ExportPowerPointResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ExportPowerPointResult" type="tns:OperInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="OperInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="OperCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OperMsg" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DownloadURL" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AsynUploadFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileByte" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isAppend" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="direName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AsynUploadFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AsynUploadFileResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateMMS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="imgBytes" type="tns:ArrayOfBase64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="model" type="tns:MMS" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBase64Binary">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="base64Binary" nillable="true" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MMS">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateMMSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateMMSResult" type="tns:OperInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExcelData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="filePath" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExcelDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetExcelDataResult" type="tns:ExcelModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ExcelModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Head" type="tns:ArrayOfColumnModel" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfColumnModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ColumnModel" nillable="true" type="tns:ColumnModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ColumnModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Child" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SelfReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="model" type="tns:ReportModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ReportModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SessionId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Format" type="tns:ReportFormat" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MarketType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ColumnField" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TimeRange" type="tns:ArrayOfTimeModel" />
+          <s:element minOccurs="0" maxOccurs="1" name="AreaRange" type="tns:ArrayOfAreaModel" />
+          <s:element minOccurs="0" maxOccurs="1" name="IndexRange" type="tns:ArrayOfIndexModel" />
+          <s:element minOccurs="1" maxOccurs="1" name="RowToColumns" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReportFlag" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FastSelection" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserOrganization" type="tns:AreaModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ReportFormat">
+        <s:restriction base="s:string">
+          <s:enumeration value="Time" />
+          <s:enumeration value="Area" />
+          <s:enumeration value="Index" />
+          <s:enumeration value="Other" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfTimeModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TimeModel" nillable="true" type="tns:TimeModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TimeModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="StartDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAreaModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AreaModel" nillable="true" type="tns:AreaModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AreaModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AreaCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AreaName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AreaParent" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParentName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AreaLevel" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfIndexModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="IndexModel" nillable="true" type="tns:IndexModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="IndexModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="IndexID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IndexName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Format" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SelfReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SelfReportResult" type="tns:OperInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FastExport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="model" type="tns:ReportModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FastExportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FastExportResult" type="tns:OperInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InitAreaParam">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="model" type="tns:ReportModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InitAreaParamResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InitAreaParamResult" type="tns:OperInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAreaNumbers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="model" type="tns:ReportModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAreaNumbersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAreaNumbersResult" type="tns:OperInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ViewReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="model" type="tns:ReportModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ViewReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ViewReportResult" type="tns:ViewReportModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ViewReportModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="OperCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OperMsg" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SheetList" type="tns:ArrayOfReportSheet" />
+          <s:element minOccurs="1" maxOccurs="1" name="Records" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfReportSheet">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ReportSheet" nillable="true" type="tns:ReportSheet" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReportSheet">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Head" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Rows" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTag">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTagResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTagResult" type="tns:TagModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TagModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Date" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Market" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Use" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetIndexInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="date" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="market" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="category" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="smallCategory" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="use" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="keyword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pageIndex" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="areaCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="maxDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="maxMonth" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetIndexInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetIndexInfoResult" type="tns:SearchResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SearchResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Total" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="TriggerAppBankModelService">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="serialMumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TriggerAppBankModelServiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TriggerAppBankModelServiceResult" type="tns:BankModelResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BankModelResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RSP" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="POLICYFLAG" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SVNSN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ERRDESC" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TOKEN" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GoldBankLog">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serialMumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ipAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="operTime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="moduleName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="systemName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GoldBankLogResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CheckTokenGoldBankStrong">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="operCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="opSubAcct" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckTokenGoldBankStrongResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckTokenGoldBankStrongResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DownloadCheckResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dateType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DownloadCheckResultResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DownloadCheckResultResult" type="tns:OperInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DayReport">
+        <s:complexType />
+      </s:element>
+      <s:element name="DayReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DayReportResult" type="tns:OperInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MonthReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dayList" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MonthReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MonthReportResult" type="tns:OperInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MMSDailyReport">
+        <s:complexType />
+      </s:element>
+      <s:element name="MMSDailyReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MMSDailyReportResult" type="tns:OperInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ExportPowerPointSoapIn">
+    <wsdl:part name="parameters" element="tns:ExportPowerPoint" />
+  </wsdl:message>
+  <wsdl:message name="ExportPowerPointSoapOut">
+    <wsdl:part name="parameters" element="tns:ExportPowerPointResponse" />
+  </wsdl:message>
+  <wsdl:message name="AsynUploadFileSoapIn">
+    <wsdl:part name="parameters" element="tns:AsynUploadFile" />
+  </wsdl:message>
+  <wsdl:message name="AsynUploadFileSoapOut">
+    <wsdl:part name="parameters" element="tns:AsynUploadFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateMMSSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateMMS" />
+  </wsdl:message>
+  <wsdl:message name="CreateMMSSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateMMSResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetExcelDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetExcelData" />
+  </wsdl:message>
+  <wsdl:message name="GetExcelDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetExcelDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelfReportSoapIn">
+    <wsdl:part name="parameters" element="tns:SelfReport" />
+  </wsdl:message>
+  <wsdl:message name="SelfReportSoapOut">
+    <wsdl:part name="parameters" element="tns:SelfReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="FastExportSoapIn">
+    <wsdl:part name="parameters" element="tns:FastExport" />
+  </wsdl:message>
+  <wsdl:message name="FastExportSoapOut">
+    <wsdl:part name="parameters" element="tns:FastExportResponse" />
+  </wsdl:message>
+  <wsdl:message name="InitAreaParamSoapIn">
+    <wsdl:part name="parameters" element="tns:InitAreaParam" />
+  </wsdl:message>
+  <wsdl:message name="InitAreaParamSoapOut">
+    <wsdl:part name="parameters" element="tns:InitAreaParamResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAreaNumbersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAreaNumbers" />
+  </wsdl:message>
+  <wsdl:message name="GetAreaNumbersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAreaNumbersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ViewReportSoapIn">
+    <wsdl:part name="parameters" element="tns:ViewReport" />
+  </wsdl:message>
+  <wsdl:message name="ViewReportSoapOut">
+    <wsdl:part name="parameters" element="tns:ViewReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTagSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTag" />
+  </wsdl:message>
+  <wsdl:message name="GetTagSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTagResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetIndexInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetIndexInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetIndexInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetIndexInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="TriggerAppBankModelServiceSoapIn">
+    <wsdl:part name="parameters" element="tns:TriggerAppBankModelService" />
+  </wsdl:message>
+  <wsdl:message name="TriggerAppBankModelServiceSoapOut">
+    <wsdl:part name="parameters" element="tns:TriggerAppBankModelServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="GoldBankLogSoapIn">
+    <wsdl:part name="parameters" element="tns:GoldBankLog" />
+  </wsdl:message>
+  <wsdl:message name="GoldBankLogSoapOut">
+    <wsdl:part name="parameters" element="tns:GoldBankLogResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckTokenGoldBankStrongSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckTokenGoldBankStrong" />
+  </wsdl:message>
+  <wsdl:message name="CheckTokenGoldBankStrongSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckTokenGoldBankStrongResponse" />
+  </wsdl:message>
+  <wsdl:message name="DownloadCheckResultSoapIn">
+    <wsdl:part name="parameters" element="tns:DownloadCheckResult" />
+  </wsdl:message>
+  <wsdl:message name="DownloadCheckResultSoapOut">
+    <wsdl:part name="parameters" element="tns:DownloadCheckResultResponse" />
+  </wsdl:message>
+  <wsdl:message name="DayReportSoapIn">
+    <wsdl:part name="parameters" element="tns:DayReport" />
+  </wsdl:message>
+  <wsdl:message name="DayReportSoapOut">
+    <wsdl:part name="parameters" element="tns:DayReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="MonthReportSoapIn">
+    <wsdl:part name="parameters" element="tns:MonthReport" />
+  </wsdl:message>
+  <wsdl:message name="MonthReportSoapOut">
+    <wsdl:part name="parameters" element="tns:MonthReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="MMSDailyReportSoapIn">
+    <wsdl:part name="parameters" element="tns:MMSDailyReport" />
+  </wsdl:message>
+  <wsdl:message name="MMSDailyReportSoapOut">
+    <wsdl:part name="parameters" element="tns:MMSDailyReportResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ExportReportServiceSoap">
+    <wsdl:operation name="ExportPowerPoint">
+      <wsdl:documentation>导出PPT</wsdl:documentation>
+      <wsdl:input message="tns:ExportPowerPointSoapIn" />
+      <wsdl:output message="tns:ExportPowerPointSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AsynUploadFile">
+      <wsdl:documentation>上传文件</wsdl:documentation>
+      <wsdl:input message="tns:AsynUploadFileSoapIn" />
+      <wsdl:output message="tns:AsynUploadFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateMMS">
+      <wsdl:documentation>生成彩信文件</wsdl:documentation>
+      <wsdl:input message="tns:CreateMMSSoapIn" />
+      <wsdl:output message="tns:CreateMMSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExcelData">
+      <wsdl:documentation>获取Excel文件数据</wsdl:documentation>
+      <wsdl:input message="tns:GetExcelDataSoapIn" />
+      <wsdl:output message="tns:GetExcelDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelfReport">
+      <wsdl:documentation>自助报表</wsdl:documentation>
+      <wsdl:input message="tns:SelfReportSoapIn" />
+      <wsdl:output message="tns:SelfReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FastExport">
+      <wsdl:documentation>快捷导出报表</wsdl:documentation>
+      <wsdl:input message="tns:FastExportSoapIn" />
+      <wsdl:output message="tns:FastExportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InitAreaParam">
+      <wsdl:documentation>初始化区域</wsdl:documentation>
+      <wsdl:input message="tns:InitAreaParamSoapIn" />
+      <wsdl:output message="tns:InitAreaParamSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAreaNumbers">
+      <wsdl:documentation>获取区域数</wsdl:documentation>
+      <wsdl:input message="tns:GetAreaNumbersSoapIn" />
+      <wsdl:output message="tns:GetAreaNumbersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ViewReport">
+      <wsdl:documentation>浏览自助报表</wsdl:documentation>
+      <wsdl:input message="tns:ViewReportSoapIn" />
+      <wsdl:output message="tns:ViewReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTag">
+      <wsdl:documentation>标签筛选条件</wsdl:documentation>
+      <wsdl:input message="tns:GetTagSoapIn" />
+      <wsdl:output message="tns:GetTagSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetIndexInfo">
+      <wsdl:documentation>指标搜索</wsdl:documentation>
+      <wsdl:input message="tns:GetIndexInfoSoapIn" />
+      <wsdl:output message="tns:GetIndexInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TriggerAppBankModelService">
+      <wsdl:documentation>是否触发金库模式</wsdl:documentation>
+      <wsdl:input message="tns:TriggerAppBankModelServiceSoapIn" />
+      <wsdl:output message="tns:TriggerAppBankModelServiceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GoldBankLog">
+      <wsdl:documentation>审计日志</wsdl:documentation>
+      <wsdl:input message="tns:GoldBankLogSoapIn" />
+      <wsdl:output message="tns:GoldBankLogSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckTokenGoldBankStrong">
+      <wsdl:documentation>票据验证服务</wsdl:documentation>
+      <wsdl:input message="tns:CheckTokenGoldBankStrongSoapIn" />
+      <wsdl:output message="tns:CheckTokenGoldBankStrongSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadCheckResult">
+      <wsdl:documentation>下载数据质量服务</wsdl:documentation>
+      <wsdl:input message="tns:DownloadCheckResultSoapIn" />
+      <wsdl:output message="tns:DownloadCheckResultSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DayReport">
+      <wsdl:documentation>日报服务</wsdl:documentation>
+      <wsdl:input message="tns:DayReportSoapIn" />
+      <wsdl:output message="tns:DayReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MonthReport">
+      <wsdl:documentation>月报服务</wsdl:documentation>
+      <wsdl:input message="tns:MonthReportSoapIn" />
+      <wsdl:output message="tns:MonthReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MMSDailyReport">
+      <wsdl:documentation>彩信日报服务</wsdl:documentation>
+      <wsdl:input message="tns:MMSDailyReportSoapIn" />
+      <wsdl:output message="tns:MMSDailyReportSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ExportReportServiceSoap" type="tns:ExportReportServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ExportPowerPoint">
+      <soap:operation soapAction="http://tempuri.org/ExportPowerPoint" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AsynUploadFile">
+      <soap:operation soapAction="http://tempuri.org/AsynUploadFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateMMS">
+      <soap:operation soapAction="http://tempuri.org/CreateMMS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExcelData">
+      <soap:operation soapAction="http://tempuri.org/GetExcelData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelfReport">
+      <soap:operation soapAction="http://tempuri.org/SelfReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FastExport">
+      <soap:operation soapAction="http://tempuri.org/FastExport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InitAreaParam">
+      <soap:operation soapAction="http://tempuri.org/InitAreaParam" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAreaNumbers">
+      <soap:operation soapAction="http://tempuri.org/GetAreaNumbers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewReport">
+      <soap:operation soapAction="http://tempuri.org/ViewReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTag">
+      <soap:operation soapAction="http://tempuri.org/GetTag" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIndexInfo">
+      <soap:operation soapAction="http://tempuri.org/GetIndexInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TriggerAppBankModelService">
+      <soap:operation soapAction="http://tempuri.org/TriggerAppBankModelService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GoldBankLog">
+      <soap:operation soapAction="http://tempuri.org/GoldBankLog" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckTokenGoldBankStrong">
+      <soap:operation soapAction="http://tempuri.org/CheckTokenGoldBankStrong" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadCheckResult">
+      <soap:operation soapAction="http://tempuri.org/DownloadCheckResult" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DayReport">
+      <soap:operation soapAction="http://tempuri.org/DayReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MonthReport">
+      <soap:operation soapAction="http://tempuri.org/MonthReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MMSDailyReport">
+      <soap:operation soapAction="http://tempuri.org/MMSDailyReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ExportReportServiceSoap12" type="tns:ExportReportServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ExportPowerPoint">
+      <soap12:operation soapAction="http://tempuri.org/ExportPowerPoint" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AsynUploadFile">
+      <soap12:operation soapAction="http://tempuri.org/AsynUploadFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateMMS">
+      <soap12:operation soapAction="http://tempuri.org/CreateMMS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExcelData">
+      <soap12:operation soapAction="http://tempuri.org/GetExcelData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelfReport">
+      <soap12:operation soapAction="http://tempuri.org/SelfReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FastExport">
+      <soap12:operation soapAction="http://tempuri.org/FastExport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InitAreaParam">
+      <soap12:operation soapAction="http://tempuri.org/InitAreaParam" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAreaNumbers">
+      <soap12:operation soapAction="http://tempuri.org/GetAreaNumbers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewReport">
+      <soap12:operation soapAction="http://tempuri.org/ViewReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTag">
+      <soap12:operation soapAction="http://tempuri.org/GetTag" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIndexInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetIndexInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TriggerAppBankModelService">
+      <soap12:operation soapAction="http://tempuri.org/TriggerAppBankModelService" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GoldBankLog">
+      <soap12:operation soapAction="http://tempuri.org/GoldBankLog" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckTokenGoldBankStrong">
+      <soap12:operation soapAction="http://tempuri.org/CheckTokenGoldBankStrong" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadCheckResult">
+      <soap12:operation soapAction="http://tempuri.org/DownloadCheckResult" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DayReport">
+      <soap12:operation soapAction="http://tempuri.org/DayReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MonthReport">
+      <soap12:operation soapAction="http://tempuri.org/MonthReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MMSDailyReport">
+      <soap12:operation soapAction="http://tempuri.org/MMSDailyReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ExportReportService">
+    <wsdl:port name="ExportReportServiceSoap" binding="tns:ExportReportServiceSoap">
+      <soap:address location="http://10.105.4.50:58080/bingo.dms/soap-service/rest?service_address=http://localhost:8090/ExportReportService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ExportReportServiceSoap12" binding="tns:ExportReportServiceSoap12">
+      <soap12:address location="http://localhost:8090/ExportReportService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

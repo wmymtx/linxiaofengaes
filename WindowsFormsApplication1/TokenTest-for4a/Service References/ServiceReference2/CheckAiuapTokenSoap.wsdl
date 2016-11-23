@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:intf="http://10.109.209.150:18096/uac/services/CheckAiuapTokenSoap" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:impl="http://10.109.209.150:18096/uac/services/CheckAiuapTokenSoap" targetNamespace="http://10.109.209.150:18096/uac/services/CheckAiuapTokenSoap" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types />
+  <wsdl:message name="CheckAiuapTokenSoapRequest">
+    <wsdl:part name="RequestInfo" type="soapenc:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckAiuapTokenSoapResponse">
+    <wsdl:part name="CheckAiuapTokenSoapReturn" type="soapenc:string" />
+  </wsdl:message>
+  <wsdl:portType name="CommonTokenService">
+    <wsdl:operation name="CheckAiuapTokenSoap" parameterOrder="RequestInfo">
+      <wsdl:input name="CheckAiuapTokenSoapRequest" message="impl:CheckAiuapTokenSoapRequest" />
+      <wsdl:output name="CheckAiuapTokenSoapResponse" message="impl:CheckAiuapTokenSoapResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CheckAiuapTokenSoapSoapBinding" type="impl:CommonTokenService">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="CheckAiuapTokenSoap">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="CheckAiuapTokenSoapRequest">
+        <wsdlsoap:body use="encoded" namespace="http://service.base.app.core.a4.asiainfo.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="CheckAiuapTokenSoapResponse">
+        <wsdlsoap:body use="encoded" namespace="http://10.109.209.150:18096/uac/services/CheckAiuapTokenSoap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CommonTokenServiceService">
+    <wsdl:port name="CheckAiuapTokenSoap" binding="impl:CheckAiuapTokenSoapSoapBinding">
+      <wsdlsoap:address location="http://10.105.4.50:58080/bingo.dms/soap-service/rest?service_address=http://10.109.209.150:18096/uac/services/CheckAiuapTokenSoap" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

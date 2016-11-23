@@ -1,0 +1,9 @@
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\TokenTest-for4a\obj\Debug\TokenTest-for4a.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\TokenTest-for4a\obj\Debug\TokenTest_for4a.Properties.Resources.resources
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\TokenTest-for4a\obj\Debug\TokenTest-for4a.csproj.GenerateResource.Cache
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\TokenTest-for4a\bin\Debug\TokenTest-for4a.exe.config
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\TokenTest-for4a\bin\Debug\TokenTest-for4a.exe
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\TokenTest-for4a\bin\Debug\TokenTest-for4a.pdb
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\TokenTest-for4a\obj\Debug\TokenTest-for4a.exe
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\TokenTest-for4a\obj\Debug\TokenTest-for4a.pdb
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\TokenTest-for4a\obj\Debug\TokenTest_for4a.Form1.resources

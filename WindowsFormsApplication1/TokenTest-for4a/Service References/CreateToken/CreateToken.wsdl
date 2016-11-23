@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:intf="http://10.109.209.100:9081/uac/services/CreateToken" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:impl="http://10.109.209.100:9081/uac/services/CreateToken" targetNamespace="http://10.109.209.100:9081/uac/services/CreateToken" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types />
+  <wsdl:message name="CreateTokenResponse">
+    <wsdl:part name="CreateTokenReturn" type="soapenc:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateTokenRequest">
+    <wsdl:part name="acctSeq" type="soapenc:string" />
+    <wsdl:part name="resEntityId" type="soapenc:string" />
+    <wsdl:part name="mainAcctId" type="xsd:long" />
+  </wsdl:message>
+  <wsdl:portType name="CreateTokenWebService">
+    <wsdl:operation name="CreateToken" parameterOrder="acctSeq resEntityId mainAcctId">
+      <wsdl:input name="CreateTokenRequest" message="impl:CreateTokenRequest" />
+      <wsdl:output name="CreateTokenResponse" message="impl:CreateTokenResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CreateTokenSoapBinding" type="impl:CreateTokenWebService">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="CreateToken">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="CreateTokenRequest">
+        <wsdlsoap:body use="encoded" namespace="http://service.base.app.core.a4.asiainfo.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="CreateTokenResponse">
+        <wsdlsoap:body use="encoded" namespace="http://10.109.209.100:9081/uac/services/CreateToken" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CreateTokenWebServiceService">
+    <wsdl:port name="CreateToken" binding="impl:CreateTokenSoapBinding">
+      <wsdlsoap:address location="http://10.109.209.100:9081/uac/services/CreateToken" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
